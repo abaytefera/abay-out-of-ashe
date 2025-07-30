@@ -26,7 +26,7 @@ createRoot(document.getElementById('root')).render(
    <div className='w-[100%] h-[100%] absolute left-0 bottom-0 top-0'>
   <Routes>
    
-<Route path="/"  Component={Dashbord}></Route>
+<Route path="/"  Component={HomeMain}></Route>
 <Route path='/Dashboard' Component={Dashbord}> </Route>
 <Route path='/RegisterNewEmployee' Component={EmployeRegisterPage}></Route>
 <Route path='/createTask' Component={CreateTaskMain}></Route>
