@@ -3,12 +3,12 @@ import React from "react";
 const Home = () => {
   return (
     <div
-      className="relative bg-cover bg-center  bg-no-repeat  flex items-center justify-center relative "
+      className="relative bg-cover bg-center bg-no-repeat flex items-center justify-center  "
       style={{ backgroundImage: "url('/out.jpeg')" }}
       role="banner"
       aria-label="Hero section with background image"
     >
-      {/* Dark Overlay for better text contrast */}
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/50 z-0" />
 
       <fieldset className="relative z-10 w-full max-w-4xl border-y-4 border-double border-white bg-black/10 text-white px-6 py-12 rounded-xl backdrop-blur-sm shadow-lg">
