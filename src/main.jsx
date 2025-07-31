@@ -17,7 +17,8 @@ import ProfileMain from './page/ProfilePage/profilePageMain.jsx'
 import HomeMain from './page/Home.jsx/Homain.jsx'
 import InnerChangePasswordMain from './page/InnerChangePassword/InnerChangePasswordMian.jsx'
 import RegisterStudentMain from './page/Regsterpage/RegisterStudentMain.jsx'
-import StudentSingleMain from './componet/StudentSinglePage/StudentSingleMain.jsx'
+import StudentSingleMain from './page/StudentSinglePage/StudentSingleMain.jsx'
+import What from './page/StudentSinglePage/What.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      
@@ -37,7 +38,7 @@ createRoot(document.getElementById('root')).render(
 <Route path='/HomeMain' Component={HomeMain}></Route>
 <Route path='/changePassword' Component={InnerChangePasswordMain}></Route>
 <Route path='/RegisterNewStudent' Component={RegisterStudentMain}></Route>
-<Route path='/Child/:ChildId' Component={StudentSingleMain}></Route>
+<Route path='/Child/:id' Component={StudentSingleMain}></Route>
 
 
 

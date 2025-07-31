@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { db } from "../../Config/firebase";
 import { upload } from "../../Config/storage";
+import { ToastContainer,toast } from "react-toastify";
 
 const RegisterStudentPage = () => {
   const [checkNext, setCheckNext] = useState(true);
@@ -18,7 +19,7 @@ const RegisterStudentPage = () => {
   // Parent file state
   const [parentTempFiles, setParentTempFiles] = useState([]);
   const [parentFiles, setParentFiles] = useState([]);
-
+const [isloding,setIsloading]=useState(false)
   const { isDarkmode } = ControlLogic();
   const {
     register,
@@ -98,7 +99,7 @@ const RegisterStudentPage = () => {
   const handlesubmit = async (data) => {
     try {
       const childInfoRef = doc(collection(db, "childinfo"));
-
+setIsloading(true)
       // Upload child files and parent files and get URLs
       const urlChildFiles = await Promise.all(files.map(upload));
       const urlParentFiles = await Promise.all(parentFiles.map(upload));
@@ -111,19 +112,47 @@ const RegisterStudentPage = () => {
         urlParentFiles,
       });
 
-      alert("Student registered successfully.");
+      toast.success("Student registered successfully.");
       reset();
       setFiles([]);
       setParentFiles([]);
       setCheckNext(true);
     } catch (error) {
       console.error("Error saving form:", error.message);
-      alert("Error saving form, please try again.");
+      toast.error("Error saving form, please try again.");
+    }finally{
+      setIsloading(false)
     }
   };
 
   return (
-    <div className={`${isDarkmode ? "bg-gray-800" : "bg-gray-200"}  p-10 pb-30`}>
+    <div className={`${isDarkmode ? "bg-gray-800" : "bg-gray-200"} relative  p-10 h-screen overflow-auto pb-40`}>
+      {isloding && (
+        <div className="absolute bg-black/10 z-[1000] w-screen h-full  -left-0 top-0 flex items-center justify-center">
+          <svg
+            className="animate-spin h-20 w-20 text-sky-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75 self-center"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
+          </svg>
+        </div>
+      )}
+      <ToastContainer></ToastContainer>
+
       <form
         onSubmit={handleSubmit(handlesubmit)}
         className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-white"} flex flex-col gap-5 rounded-lg pb-5`}

@@ -78,7 +78,7 @@ const MessageSection = () => {
     <div
       className={`${
         isDarkmode ? "bg-gray-800 text-white" : "bg-white"
-      } flex w-full h-[calc(100vh-64px)] overflow-hidden`}
+      } flex w-full h-[calc(100vh-64px)] h-screen overflow-auto pb-25`}
     >
       {/* Sidebar - Chat List */}
       <div

@@ -15,7 +15,7 @@ const  InnerChangePasswordMain= () => {
       },[])
     return ( 
 
-          <div className="h-screen flex flex-col overflow-auto w-screen">
+          <div className="h-screen flex flex-col  w-screen">
  <DashbordHeader></DashbordHeader>
   <div className="grid grid-cols-[200px_1fr] w-[100%]   max-sm:grid-cols-1">
  <SideMenu></SideMenu>

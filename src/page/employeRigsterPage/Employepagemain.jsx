@@ -93,7 +93,7 @@ console.error(err.message);
 
   return (
 
-    <div className={` ${isDarkmode ?"bg-gray-800 text-white":"bg-white text-black"}`}>
+    <div className={` ${isDarkmode ?"bg-gray-800 text-white":"bg-white text-black"} h-screen overflow-auto pb-40`}>
     <div className={`grid ${isDarkmode ?"bg-gray-800 text-white":"bg-white text-black"}  grid-rows-[70px_1fr_50px] gap-5 pt-5 ] `}>
     
       {/* Step Indicators */}

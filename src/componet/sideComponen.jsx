@@ -42,7 +42,7 @@ return (
        
 
     
-<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-white rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full  absolute left-0      ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"}  `}>
+<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-white rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full  absolute left-0      ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"} left-0 top-0 `}>
 
 <Link to={'/Dashboard'}>  
 

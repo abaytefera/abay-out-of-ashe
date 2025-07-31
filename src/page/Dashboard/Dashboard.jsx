@@ -16,7 +16,7 @@ FalseDisplay();
 
   },[])
   return (
-    <div className="h-screen flex flex-col overflow-auto  w-screen">
+    <div className="h-screen flex flex-col   w-screen">
       <DashbordHeader />
 
       {/* Main content layout */}

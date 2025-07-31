@@ -1,31 +1,37 @@
 import { faCircleArrowLeft, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { doc, getDoc } from "firebase/firestore";
+import { doc ,getDoc} from "firebase/firestore";
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {  db } from "../../Config/firebase";
 
 const StudentSinglePage = () => {
   const images = ['bit.png', 'natural.jpg', 'out.png'];
   const [currentIndex, setCurrentIndex] = useState(0);
   const maxIndex = images.length - 1;
   const [EditChild,setEditChild]=useState(false)
-let Childinfo=[{}];
+let  [Childinfo,setChildInfo]=useState([{}]);
 const {id}=useParams()
 useEffect(()=>{
-
-
-    const fetchChild=async()=>{
+ const fetchChild=async()=>{
 
 const ChildRef=doc(db,'childinfo',id);
+try{
+
+
 
 let result=await getDoc(ChildRef)
-Childinfo=result.data();
+setChildInfo(result.data());
+    }catch(error){
+
+      console.log(error.message)
     }
+  }
+fetchChild();
 
 
-
-
-},[])
+},[id])
   const goLeft = () => {
     if (currentIndex >0) {
       setCurrentIndex((prev) => prev - 1);
@@ -38,12 +44,12 @@ Childinfo=result.data();
       setCurrentIndex((prev) => prev + 1);
     }
   };
-
+console.log(Childinfo)
   const isLeftDisabled = currentIndex === 0;
   const isRightDisabled = currentIndex === maxIndex;
 
   return (
-    <div className="bg-gray-300 px-10 py-10 overflow-auto">
+    <div className="bg-gray-300 px-10 py-10 h-screen overflow-auto pb-40">
         <div className="flex flex-col pb-10 gap-5 bg-white rounded-lg">
       {/* <h1 className="text-2xl font-bold text-gray-500">Student Info</h1> */}
 
@@ -57,7 +63,7 @@ Childinfo=result.data();
             />
 
             <img
-              src={Childinfo?.urlChildFiles[currentIndex]}
+              src={Childinfo?.urlChildFiles?.[currentIndex]}
               alt="student"
               className="w-100 h-100  object-contain rounded-xl"
             />
@@ -72,7 +78,7 @@ Childinfo=result.data();
 
 
           <div>
-            <h2 className="capitalize text-lg font-medium">abay tefera</h2>
+            <h2 className="capitalize text-lg font-medium">{Childinfo.fullName}</h2>
             <p><span className="font-medium">Age:</span> 24</p>
           </div>
         </div>

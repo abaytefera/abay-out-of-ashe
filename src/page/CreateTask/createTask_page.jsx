@@ -27,7 +27,7 @@ const CreateTaskPage = () => {
   };
 
   return (
-    <div className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-gray-50 text-black"} min-h-screen flex justify-center items-start  `}>
+    <div className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-gray-50 text-black"}  h-screen overflow-auto pb-40 flex justify-center items-start  `}>
       <form className={`w-full max-w-md ${isDarkmode ?"bg-gray-900":"bg-white"} shadow-xl rounded-xl p-6 space-y-6`}>
         <h1 className="text-3xl font-bold text-sky-500 text-center">Create Task</h1>
 
