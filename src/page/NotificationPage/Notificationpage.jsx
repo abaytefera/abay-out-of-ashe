@@ -8,7 +8,7 @@ const  NotificationPage= () => {
 let NotificationArray=[{title:"go to office",id:"12",date:"2 day ago"},{title:"register student",id:"15",date:"2 mint ago"}]
 
     return ( 
-        <div className={`${isDarkmode ? "bg-gray-800":""} flex flex-col py-[10px] gap-[20px] overflow-y-auto`}>
+        <div className={`${isDarkmode ? "bg-gray-800":""} flex flex-col py-[10px] gap-[20px] `}>
 
            <div className={`${isDarkmode ? "transparent ":"bg-gray-200"} p-[10px]   flex w-full`}>
  <div className={` ${isDarkmode ?"text-white":"text-gray-700"} self-start  `}> <FontAwesomeIcon icon={faBell} className="mr-[5px] text-xl"></FontAwesomeIcon> <span className="text-xl font-semibold ">List Notification</span></div>

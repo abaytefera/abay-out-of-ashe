@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
   return (
     <div
-      className="relative bg-cover bg-center  bg-no-repeat  flex items-center justify-center pt-5 px-6 sm:px-12 pb-20"
+      className="relative bg-cover bg-center  bg-no-repeat  flex items-center justify-center relative "
       style={{ backgroundImage: "url('/out.jpeg')" }}
       role="banner"
       aria-label="Hero section with background image"

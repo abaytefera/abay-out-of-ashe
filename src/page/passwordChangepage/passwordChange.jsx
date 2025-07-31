@@ -124,7 +124,7 @@ if(rendering){
 }
 
     return ( 
-<div className="w-full h-full  flex justify-between flex-col ">
+<div className="w-full h-full  flex justify-between flex-col overflow-auto ">
 <Log></Log>
 
 <div className="flex-1 flex  justify-center bg-[url(out.jpeg)] bg-cover bg-center">

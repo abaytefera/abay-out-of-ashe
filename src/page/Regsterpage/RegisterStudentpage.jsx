@@ -123,7 +123,7 @@ const RegisterStudentPage = () => {
   };
 
   return (
-    <div className={`${isDarkmode ? "bg-gray-800" : "bg-gray-200"} overflow-auto p-10 pb-30`}>
+    <div className={`${isDarkmode ? "bg-gray-800" : "bg-gray-200"}  p-10 pb-30`}>
       <form
         onSubmit={handleSubmit(handlesubmit)}
         className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-white"} flex flex-col gap-5 rounded-lg pb-5`}

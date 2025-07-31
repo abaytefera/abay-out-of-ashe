@@ -99,7 +99,7 @@ const ProfilePage = () => {
     <div
       className={`${
         isDarkmode ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-900"
-      } flex flex-col gap-10  pb-30 px-10 overflow-auto relative`}
+      } flex flex-col gap-10  pb-30 px-10  `}
     >
       {isLoading && (
         <div className="absolute bg-black bg-opacity-50 z-[1000] w-full h-full left-0 top-0 flex items-center justify-center">

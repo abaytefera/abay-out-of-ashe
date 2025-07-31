@@ -129,7 +129,7 @@ const InnerChangePassword = () => {
     <div
       className={`${
         isDarkmode ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-      } px-10 overflow-auto pb-40 flex gap-4 pt-10 flex-col items-center min-h-screen`}
+      }  overflow-auto  flex gap-4  flex-col items-center min-h-screen `}
     >
       <p className={`${isDarkmode ? "text-white" : "text-gray-500"}  text-2xl font-extrabold`}>
         Change Password

@@ -21,6 +21,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+
 const DashbordHeader = () => {
   const navigate = useNavigate();
   const { UserInformation } = userControl();
@@ -32,6 +33,7 @@ const DashbordHeader = () => {
   const [DisplaySetting, setDisplaySetting] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [light, setLight] = useState(false);
+const {FalseDisplay}=Controllogic()
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -129,7 +131,10 @@ const DashbordHeader = () => {
 
         {/* Profile Menu */}
         <div className="relative">
-          <button onClick={() => setShowProfileMenu(prev => !prev)} className="flex items-center gap-2">
+          <button onClick={() => {setShowProfileMenu(prev => !prev)
+          FalseDisplay()
+          }
+          } className="flex items-center gap-2">
             <img src="bit.png" alt="Profile" className="w-10 h-10 rounded-full object-cover" />
             <p className="capitalize hidden sm:block">
               {UserInformation?.firstname} {UserInformation?.lastname}
@@ -140,29 +145,29 @@ const DashbordHeader = () => {
           {showProfileMenu && (
             <div className={`absolute right-0 mt-2 shadow-md rounded-md w-40 py-2 z-50 ${isDarkmode ? "bg-gray-800 text-white border border-white" : "bg-white text-black"}`}>
               <Link to="/profile">
-                <button className="w-full text-left px-4 py-2 hover:bg-gray-100">Profile</button>
+                <button className={` ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "} w-full text-left px-4 py-2 hover:bg-gray-100`}>Profile</button>
               </Link>
 
-              <button className="w-full text-left relative">
+              <button className={`w-full text-left relative ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "}`}>
                 <div className="px-4 py-2 hover:bg-gray-100" onClick={() => setDisplaySetting(prev => !prev)}>Settings</div>
 
                 {DisplaySetting && (
                   <div className={`absolute top-10 right-7 w-52 py-2 rounded-md shadow-md z-50 flex flex-col gap-2 ${isDarkmode ? "bg-gray-800 text-white border border-white" : "bg-white text-black"}`}>
                     <Link to="/changePassword">
-                      <div className="flex gap-2 items-center px-3 py-2 hover:bg-gray-100">
+                      <div className={`${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "}  flex gap-2 items-center px-3 py-2 hover:bg-gray-100`}>
                         <FontAwesomeIcon icon={faLock} />
                         <p>Password</p>
                       </div>
                     </Link>
-                    <div className="flex gap-2 items-center px-3 py-2 hover:bg-gray-100">
+                    <div className={`flex gap-2 items-center px-3 py-2 ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "} `}>
                       <FontAwesomeIcon icon={faHandsBound} />
                       <p>About Application</p>
                     </div>
-                    <div className="flex gap-2 items-center px-3 py-2 hover:bg-gray-100">
+                    <div className={`flex ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "} gap-2 items-center px-3 py-2 hover:bg-gray-100`}>
                       <FontAwesomeIcon icon={faQuestion} />
                       <p>Help/FAQ</p>
                     </div>
-                    <div className="flex items-center justify-between px-3 py-2 hover:bg-gray-100">
+                    <div className={`flex items-center justify-between px-3 py-2 hover:bg-gray-100 ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "}`}>
                       <div className="flex items-center gap-2">
                         <FontAwesomeIcon icon={faMoon} />
                         <p>Dark Mode</p>
@@ -181,7 +186,7 @@ const DashbordHeader = () => {
                 )}
               </button>
 
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100" onClick={handleLogout}>Logout</button>
+              <button className={`w-full text-left px-4 py-2 ${isDarkmode?"hover:bg-white hover:text-gray-800":"hover:bg-gray-100 "}`} onClick={handleLogout}>Logout</button>
             </div>
           )}
         </div>

@@ -42,9 +42,9 @@ return (
        
 
     
-<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-white rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full       ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"}  `}>
+<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-white rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full  absolute left-0      ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"}  `}>
 
-<Link to={'/Dashboard'}>
+<Link to={'/Dashboard'}>  
 
 <div className="self-start transition  items-center py-[20px] flex gap-[5px] hover:bg-gray-700  duration-100 ease-linear cursor-pointer  w-full">
 < FontAwesomeIcon icon={faDashboard} className="text-[20px] text-black"></FontAwesomeIcon>
@@ -143,7 +143,7 @@ Register new Employee
 
 
 return(
-<div className={`w-[200px]  flex gap-[10px] flex-col  pt-[20px] max-sm:hidden   ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"} `}>
+<div className={`w-[200px]    flex gap-[10px] flex-col  pt-[20px] max-sm:hidden   ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"} `}>
 
   <Link to={'/Dashboard'}>
   
