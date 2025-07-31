@@ -65,10 +65,10 @@ function Login() {
   }, []);
 
   return (
-    <div className=" flex flex-col bg-[url('/bg.png')] bg-cover w-full h-full gap-16 overflow-auto bg-center bg-no-repeat">
+    <div className=" flex flex-col bg-[url('/bg.png')] bg-cover w-full h-full gap-16 overflow-auto  bg-center bg-no-repeat">
       <Log />
 
-      <div className="flex-grow flex items-center justify-center bg-useblack px-4">
+      <div className="flex-grow flex items-center justify-center bg-useblack  px-4  pb-30">
         <form
           onSubmit={handleSubmit(handleLogin)}
           className="w-full max-w-sm bg-white rounded-xl shadow-lg px-6 py-8 space-y-5"
