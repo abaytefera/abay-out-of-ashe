@@ -64,7 +64,7 @@ const {FalseDisplay}=Controllogic()
   };
 
   return (
-    <header className={`w-full h-[60px] flex items-center justify-between px-4 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
+    <header className={` sticky top-0 z-50    w-full h-[60px] flex items-center justify-between px-4 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
       {/* Left: Logo & Menu */}
       <div className="flex items-center gap-4">
         <button className="sm:hidden text-xl" onClick={ControlDisplay}>

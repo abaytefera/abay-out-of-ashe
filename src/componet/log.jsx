@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Log = () => {
   return (
-    <header className="w-full bg-gray-100 shadow-md px-6 py-4">
+    <header className="w-full   sticky top-0 z-50 w-full bg-gray-100 shadow-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
         {/* Logo */}
         <div>
