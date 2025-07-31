@@ -4,7 +4,7 @@ import Home from "./Home";
 
 const HomeMain = () => {
   return (
-    <div className="flex h-full w-full overflow-auto flex-col gap-16"> 
+    <div className="flex h-full w-full overflow-auto flex-col gap-5"> 
       <Log />
       <Home />
       <Footer />
