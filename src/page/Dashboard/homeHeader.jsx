@@ -86,29 +86,50 @@ const {FalseDisplay}=Controllogic()
           onChange={handleSearch}
         />
 
-        {SearchResult.length > 0 && (
-          <div className={`absolute top-10 w-120 max-h-[250px] overflow-y-auto rounded-lg shadow-xl z-50 ${isDarkmode ? "bg-gray-800 border border-white text-white" : "bg-white text-black"}`}>
-            {SearchResult.map((data, index) => (
-              <Link to={`/child/${data.id}`} key={data.id}>
-                <div className={`flex justify-between items-center px-5 py-2 cursor-pointer transition duration-300 ${isDarkmode ? "hover:bg-black" : "hover:bg-gray-200"}`}>
-                  <div className="flex gap-3">
-                    <img src={data?.urlChildFiles?.[0]} className="w-15 h-15 rounded-full object-contain" />
-                    <div>
-                      <h1 className="capitalize text-md font-semibold">
-                        {data.childFirstName} {data.childLastName}
-                      </h1>
-                      <p className="text-sm"><span className="font-bold">Age: </span>{data.childAge}</p>
-                    </div>
-                  </div>
-                  <div>
-                    <h1 className="text-md font-semibold">Grade</h1>
-                    <p className="font-bold text-sm">{data.Grade}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+     {SearchResult.length > 0 && (
+  <div
+    className={`absolute top-12 w-full max-w-md sm:max-w-xl md:max-w-2xl max-h-[300px] overflow-y-auto rounded-lg shadow-xl z-50 ${
+      isDarkmode
+        ? "bg-gray-800 border border-white text-white"
+        : "bg-white text-black"
+    }`}
+  >
+    {SearchResult.map((data, index) => (
+      <Link to={`/child/${data.id}`} key={data.id}>
+        <div
+          className={`flex justify-between items-center gap-4 px-4 py-3 cursor-pointer transition duration-300 ${
+            isDarkmode ? "hover:bg-black" : "hover:bg-gray-200"
+          }`}
+        >
+          {/* Profile + Name + Age */}
+          <div className="flex items-center gap-3">
+            <img
+              src={data?.urlChildFiles?.[0]}
+              alt="child"
+              className="w-14 h-14 rounded-full object-cover border"
+            />
+            <div>
+              <h1 className="capitalize text-md font-semibold">
+                {data.childFirstName} {data.childLastName}
+              </h1>
+              <p className="text-sm">
+                <span className="font-bold">Age: </span>
+                {data.childAge}
+              </p>
+            </div>
           </div>
-        )}
+
+          {/* Grade */}
+          <div className="text-right max-sm:hidden">
+            <h1 className="text-md font-semibold">Grade</h1>
+            <p className="font-bold text-sm">{data.Grade}</p>
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+)}
+
       </div>
 
       {/* Right: Icons & Profile */}
