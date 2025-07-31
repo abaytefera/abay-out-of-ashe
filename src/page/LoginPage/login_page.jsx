@@ -65,7 +65,7 @@ function Login() {
   }, []);
 
   return (
-    <div className=" flex flex-col bg-[url('/bg.png')] bg-cover overflow-auto bg-center bg-no-repeat">
+    <div className=" flex flex-col bg-[url('/bg.png')] bg-cover w-full h-full gap-16 overflow-auto bg-center bg-no-repeat">
       <Log />
 
       <div className="flex-grow flex items-center justify-center bg-useblack px-4">
