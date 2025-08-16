@@ -1,5 +1,12 @@
 
 @import "tailwindcss";
+@source inline("abay");
+.abay{
+
+    color:red;
+    font-size: 40px;
+    font-weight: bold;
+}
 @theme{
 
 --color-abu: rgb(153, 88, 172);
@@ -40,3 +47,10 @@ body{
     padding: 0;
     margin: 0;
 }
+@layer component{
+    .check{
+   @apply bg-white shadow-md rounded-lg border-1
+}}
+
+
+@custom-variant dark (&:where(.dark, .dark *));

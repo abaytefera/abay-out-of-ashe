@@ -7,7 +7,7 @@ const Log = () => {
         {/* Logo */}
         <div>
           <img
-            src="out.png"
+            src="https://zkjgdrtmexmdmqvstwuz.supabase.co/storage/v1/object/public/my-file/out.png"
             alt="logo"
             className="w-40 h-20 object-contain"
           />

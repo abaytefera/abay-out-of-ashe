@@ -11,7 +11,7 @@ const docRef=doc(db,'users',uid);
 const docSnap=await getDoc(docRef)
 if(docSnap.exists()){
 
-set({employee:docSnap.data(),PasswordChange:docSnap.data().PasswordChange});
+set({employee: {id:docSnap.id,...docSnap.data()},PasswordChange:docSnap.data().PasswordChange});
 
 }else{
 set({employee:null,PasswordChange:false});

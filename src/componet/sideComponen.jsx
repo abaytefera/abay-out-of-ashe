@@ -42,20 +42,20 @@ return (
        
 
     
-<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-white rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full  absolute left-0      ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"} left-0 top-0 `}>
+<div className={` ${ Click ? "flex flex-col -translate-x-[0px]   z-600   absolute  h-screen  w-[200px]  text-white  rounded-r-[10px]  gap-[20px] item-center    transition  duration-300  ease-linear ":"flex  flex-col -translate-x-[200px]   z-600   absolute   h-screen w-[200px] text-black rounded-r-[10px] gap-[20px] item-center  transition duration-300 ease-linear " }          w-[200px] h-full  absolute left-0      ${isDarkmode ?"bg-gray-800 text-white":"bg-white  text-black shadow-md"} left-0 top-0 `}>
 
 <Link to={'/Dashboard'}>  
 
 <div className="self-start transition  items-center py-[20px] flex gap-[5px] hover:bg-gray-700  duration-100 ease-linear cursor-pointer  w-full">
 < FontAwesomeIcon icon={faDashboard} className="text-[20px] text-black"></FontAwesomeIcon>
-<button className="text-2xl font-bold  cursor-pointer">Dashboard</button>
+<button className="text-2xl  text-black  cursor-pointer">Dashboard</button>
 
 </div></Link>
 
 
  <Link to={'/RegisterNewStudent'}> 
  
-   <div className="self-start items-center py-[20px]  flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full">
+   <div className="self-start text-black items-center py-[20px]  flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full">
 <FontAwesomeIcon icon={faUserPlus} className="text-[20px] text-black"/>
 Register new student
 
@@ -65,7 +65,7 @@ Register new student
 UserInformation?.role==='Admin'  &&
  (
  <Link to={'/RegisterNewEmployee'}>
-<div className="self-start items-center py-[20px] flex gap-[5px] cursor-pointer   hover:bg-gray-700 transition-all duration-200  w-full">
+<div className="self-start items-center text-black py-[20px] flex gap-[5px] cursor-pointer   hover:bg-gray-700 transition-all duration-200  w-full">
 <FontAwesomeIcon icon={faUserPlus}  className="text-[20px] text-black"/>
 Register new Employee
 
@@ -80,7 +80,7 @@ Register new Employee
 
 { UserInformation?.role==='Admin'  && (
   <Link to={'/createTask'}>
-<div className="self-start py-[20px] z-400 items-center flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full">
+<div className="self-start py-[20px] text-black z-400 items-center flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full">
 
     <FontAwesomeIcon icon={faPlusCircle}  className="text-[20px] text-black"/>
     Create Task 
@@ -93,12 +93,12 @@ Register new Employee
 
 <div className="self-start relative py-[20px] items-center flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full">
   
-     <div className=" items-center  flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full" onClick={()=>{setDisplaySetting(pre=>!pre)}}> <FontAwesomeIcon className=" text-[20px] text-black" icon={faCog}  />
+     <div className=" items-center text-black flex gap-[5px] hover:bg-gray-700 transition-all duration-200 cursor-pointer  w-full" onClick={()=>{setDisplaySetting(pre=>!pre)}}> <FontAwesomeIcon className=" text-[20px] text-black" icon={faCog}  />
   <span>Settings</span></div>
  <div className={`shadow-md flex flex-col gap-[20px] py-[5px] absolute z-500   rounded-[5px]  -top-[230px] bg-white text-black 
     ${DisplaySetting ?"flex":"hidden"}`}>
 <Link to='/changePassword'>
-<div className="flex gap-[5px] items-center w-full text-left px-2 py-2 hover:bg-gray-100">
+<div className="flex gap-[5px]  items-center w-full text-left px-2 py-2 hover:bg-gray-100">
   <FontAwesomeIcon className="text-lg font-bold" icon={faLock}></FontAwesomeIcon>  
     <p>Password</p>
      </div>
@@ -143,7 +143,7 @@ Register new Employee
 
 
 return(
-<div className={`w-[200px]    flex gap-[10px] flex-col  pt-[20px] max-sm:hidden   ${isDarkmode ?"bg-gray-800 text-white":"bg-gray-500  text-white"} `}>
+<div className={`w-[200px]    flex gap-[10px] flex-col  pt-[20px] max-sm:hidden   ${isDarkmode ?"bg-gray-800 text-white":"bg-white  text-black shadow-md"} `}>
 
   <Link to={'/Dashboard'}>
   

@@ -10,16 +10,21 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userControl } from "../../context/Controluser";
 import { Controllogic } from "../../context/controlApplogic";
 import { ControlLogic } from "../../ControlLofic/Controllogic";
 import { auth, db } from "../../Config/firebase";
+import { useMessageStore } from "../../context/messageStore";
 import {
   collection,
   getDocs,
+  onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
+
 
 
 const DashbordHeader = () => {
@@ -33,11 +38,14 @@ const DashbordHeader = () => {
   const [DisplaySetting, setDisplaySetting] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [light, setLight] = useState(false);
+  const {controlCurrentMessage,controlNewMessage,newMessageCount,messageCollection}=useMessageStore()
+  
 const {FalseDisplay}=Controllogic()
 
   const handleLogout = (e) => {
     e.preventDefault();
     auth.signOut();
+     controlCurrentMessage();
     navigate('/login');
   };
 
@@ -48,6 +56,7 @@ const {FalseDisplay}=Controllogic()
     if (!name) return;
 
     try {
+
       const searchRef = collection(db, 'childinfo');
       const snapshot = await getDocs(searchRef);
 
@@ -63,14 +72,56 @@ const {FalseDisplay}=Controllogic()
     }
   };
 
+useEffect(() => {
+  if (!auth?.currentUser?.uid) return;
+
+  const refQuery = collection(db, "chats");
+  const q = query(refQuery, where("participants", "array-contains", auth.currentUser.uid));
+
+  const unsub = onSnapshot(q, async (snap) => {
+    if (snap.empty) {
+      controlNewMessage(0);
+      return;
+    }
+
+    let countMessage = 0;
+
+    // Use Promise.all to wait for all async checks
+    await Promise.all(
+      snap.docs.map(async (doc) => {
+        const msgRef = collection(db, "chats", doc.id, "messages");
+        const msgSnap = await getDocs(msgRef);
+
+        if (!msgSnap.empty) {
+          const unseenCount = msgSnap.docs.filter(
+            (m) => !m.data().seenBy?.includes(auth.currentUser.uid)
+          ).length;
+
+          if (unseenCount > 0) {
+            countMessage += 1; // Count chat as having unseen messages
+          }
+        }
+      })
+    );
+
+    controlNewMessage(countMessage);
+  });
+
+  return () => unsub();
+}, [auth?.currentUser?.uid,messageCollection]);
+
+
+
+
+
   return (
-    <header className={` sticky top-0 z-50    w-full h-[60px] flex items-center justify-between px-4 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
+    <header className={` sticky top-0 z-50    w-full h-[60px] flex items-center justify-between px-10 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
       {/* Left: Logo & Menu */}
       <div className="flex items-center gap-4">
         <button className="sm:hidden text-xl" onClick={ControlDisplay}>
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <img src="out.png" alt="Company Logo" className="w-[100px] h-[40px] object-cover hidden sm:block" />
+        <img src="https://zkjgdrtmexmdmqvstwuz.supabase.co/storage/v1/object/public/my-file/out.png" alt="Company Logo" className="w-[100px] h-[40px] object-cover hidden sm:block" />
       </div>
 
       {/* Center: Search */}
@@ -138,7 +189,7 @@ const {FalseDisplay}=Controllogic()
         <Link to="/message">
           <div className="relative cursor-pointer">
             <FontAwesomeIcon icon={faMessage} className="text-lg" />
-            <span className="absolute -top-2 -right-3 text-xs font-bold bg-red-600 text-white rounded-full px-1">2</span>
+            <span className="absolute -top-2 -right-3 text-xs font-bold bg-red-600 text-white rounded-full px-1">{newMessageCount>0 ?newMessageCount:""}</span>
           </div>
         </Link>
 
@@ -155,12 +206,15 @@ const {FalseDisplay}=Controllogic()
           <button onClick={() => {setShowProfileMenu(prev => !prev)
           FalseDisplay()
           }
-          } className="flex items-center gap-2">
-            <img src="bit.png" alt="Profile" className="w-10 h-10 rounded-full object-cover" />
-            <p className="capitalize hidden sm:block">
+          } className="flex items-center  gap-2">
+            <img src="https://zkjgdrtmexmdmqvstwuz.supabase.co/storage/v1/object/public/my-file/proman.webp" alt="Profile" className="w-10 h-10 rounded-full object-cover " />
+<p className="px-4 md:hidden"></p>
+
+            <p className="capitalize hidden sm:block ">
               {UserInformation?.firstname} {UserInformation?.lastname}
+                
             </p>
-            <FontAwesomeIcon icon={faChevronCircleDown} />
+         <span className="max-md:hidden"> <FontAwesomeIcon icon={faChevronCircleDown}  /></span>
           </button>
 
           {showProfileMenu && (

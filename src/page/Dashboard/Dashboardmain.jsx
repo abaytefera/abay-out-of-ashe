@@ -9,7 +9,7 @@ import { ControlLogic } from '../../ControlLofic/Controllogic';
 import { userControl } from '../../context/Controluser';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../Config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
@@ -30,7 +30,7 @@ const DashbordMain = () => {
             const snapshot = await getDocs(usersRef);
 
             if (!snapshot.empty) {
-              const usersData = snapshot.docs.map((doc) => doc.data());
+              const usersData = snapshot.docs.map((doc) => ({id:doc.id,...doc.data()}));
               const filteredUsers = usersData.filter(
                 (item) => item.email !== user.email
               );
@@ -61,7 +61,7 @@ const DashbordMain = () => {
   ];
 
   return (
-    <div className={`px-10 h-screen overflow-auto pb-40 ${isDarkmode ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
+    <div className={`px-10 h-screen space-y-40 overflow-auto pb-40 ${isDarkmode ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
       {/* Welcome Header */}
       <div className="mb-6">
         <h1 className="text-start capitalize font-bold text-2xl sm:text-3xl text-gray-400">
@@ -93,9 +93,9 @@ const DashbordMain = () => {
           </h2>
           <div className="flex flex-col max-h-[300px] overflow-auto gap-3 pr-2 border border-gray-300 rounded">
             {EmployeList.map((emp, index) => (
-              <div
-                key={index}
-                className={`flex items-center justify-between p-3 ${isDarkmode ? 'hover:bg-gray-600' : 'hover:bg-pink-200'} rounded transition`}
+             < Link to={`/employee/${emp.id}`} key={index}><div
+                
+                className={`flex items-center justify-between cursor-pointer p-3 ${isDarkmode ? 'hover:bg-gray-600' : 'hover:bg-pink-200'} rounded transition`}
               >
                 <div className="flex items-center gap-3">
                   <img src="bit.png" className="w-10 h-10 rounded-full object-cover" alt="Employee" />
@@ -104,10 +104,11 @@ const DashbordMain = () => {
                     <span className="text-xs">{emp.email}</span>
                   </div>
                 </div>
-                <span className="text-sm font-bold px-3 py-1 rounded bg-gray-200 dark:bg-gray-700">
+                <span className={`text-sm font-bold ${isDarkmode ? "bg-gray-700 ":"bg-gray-200"} px-3 py-1 rounded`}>
                   {emp.role}
                 </span>
               </div>
+              </Link>
             ))}
           </div>
         </div>

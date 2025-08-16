@@ -18,7 +18,8 @@ import HomeMain from './page/Home.jsx/Homain.jsx'
 import InnerChangePasswordMain from './page/InnerChangePassword/InnerChangePasswordMian.jsx'
 import RegisterStudentMain from './page/Regsterpage/RegisterStudentMain.jsx'
 import StudentSingleMain from './page/StudentSinglePage/StudentSingleMain.jsx'
-import What from './page/StudentSinglePage/What.jsx'
+import Check from './page/check.jsx'
+import EmployeSingleMain from './page/Employepage/EmployeeSingleMain.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
      
@@ -26,7 +27,6 @@ createRoot(document.getElementById('root')).render(
 
    <div className='w-[100%] h-[100%] absolute left-0 bottom-0 top-0'>
   <Routes>
-   
 <Route path="/"  Component={HomeMain}></Route>
 <Route path='/Dashboard' Component={Dashbord}> </Route>
 <Route path='/RegisterNewEmployee' Component={EmployeRegisterPage}></Route>
@@ -37,17 +37,10 @@ createRoot(document.getElementById('root')).render(
 <Route path='/Login' Component={Login}></Route>
 <Route path='/HomeMain' Component={HomeMain}></Route>
 <Route path='/changePassword' Component={InnerChangePasswordMain}></Route>
-<Route path='/RegisterNewStudent' Component={RegisterStudentMain}></Route>
+<Route path='/employee/:id' Component={EmployeSingleMain}></Route>
+<Route path='/RegisterNewStudent' Component={EmployeSingleMain}></Route>
 <Route path='/Child/:id' Component={StudentSingleMain}></Route>
-
-
-
-
-
-
-
-
-  </Routes>
+</Routes>
   </div>
 
  </Router>
