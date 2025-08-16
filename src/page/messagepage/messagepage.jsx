@@ -264,7 +264,7 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
       <div
         className={`${
           isWide || !chat ? "flex" : "hidden"
-        } flex-col w-full max-w-[300px] border-r shadow-sm ${
+        } flex-col w-full  ${!isWide ? "":"max-w-[300px]"}  border-r shadow-sm ${
           isDarkmode ? "bg-gray-900 text-white" : "bg-white"
         } min-h-0 overflow-hidden`}
       >
@@ -290,6 +290,7 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
               className="flex justify-between items-center p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
               onClick={()=>{
                 handleSingleMessage(item.chatInfo.id,item.userInfo)
+                setChat(true);
               }
               }
             >
@@ -326,7 +327,7 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
       {
         isLoadingMessage &&( (()=>{
 
-if(isLoadingMessage) return <div className="flex flex-col w-full border-center  h-screen items-center justify-center "><div className="h-10 w-10 border-4  border-sky-500 rounded-full border-t-transparent animate-spin"></div></div>
+if(isLoadingMessage) return <div className="flex flex-col w-full   h-screen items-center justify-center "><div className="h-10 w-10 border-4  border-sky-500 rounded-full border-t-transparent animate-spin"></div></div>
 
 }))
       ()}
