@@ -258,7 +258,7 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
     <div
       className={`${
         isDarkmode ? "bg-gray-800 text-white" : "bg-white"
-      } flex w-full h-[calc(100vh-64px)] h-screen overflow-auto pb-25`}
+      } flex w-full  h-screen overflow-auto  ${!isWide ?"pb-40":"pb-30"}`}
     >
       {/* Sidebar - Chat List */}
       <div
@@ -348,7 +348,7 @@ if(isLoadingMessage) return <div className="flex flex-col w-full   h-screen item
         {/* Mobile back arrow */}
         {!isWide && (
           <span
-            className="p-4 block md:hidden cursor-pointer"
+            className="p-4 block md:hidde cursor-pointer"
             onClick={() => setChat(false)}
           >
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -383,7 +383,7 @@ if(isLoadingMessage) return <div className="flex flex-col w-full   h-screen item
         </div>
 
         {/* Messages */}
-        <div className="flex-1 flex  flex-col overflow-y-auto px-4 py-4 space-y-4 min-h-0" >
+        <div className="flex-1 flex  flex-col overflow-y-auto   px-4 py-4 space-y-4 " >
           {(messageCollection ?? []).map((msg, i) => (
             <div 
        
