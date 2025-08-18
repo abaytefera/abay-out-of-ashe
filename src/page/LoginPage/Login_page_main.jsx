@@ -1,15 +1,15 @@
 import Footer from "../../componet/footer";
 import Log from "../../componet/log";
-import Home from "./Home";
+import Login from "./login_page";
 
-const HomeMain = () => {
+const LoginMain = () => {
   return (
     <div className="flex h-full w-full overflow-auto flex-col "> 
       <Log />
-      <Home />
+      <Login />
   
     </div>
   );
 };
 
-export default HomeMain;
+export default LoginMain;

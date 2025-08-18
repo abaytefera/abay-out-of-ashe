@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 
 import { BrowserRouter as Router } from 'react-router-dom'
-import Login from './page/LoginPage/login_page.jsx'
+import LoginMain from './page/LoginPage/Login_page_main.jsx'
 import { Route,Routes } from 'react-router-dom'
 import PasswordChange from './page/passwordChangepage/passwordChange.jsx'
 import Dashbord from './page/Dashboard/Dashboard.jsx'
@@ -34,7 +34,7 @@ createRoot(document.getElementById('root')).render(
 <Route path='/Notification' Component={NotificationMainPage}></Route>
 <Route path='/message' Component={MessagepageMain}></Route>
 <Route path='/profile' Component={ProfileMain}></Route>
-<Route path='/Login' Component={Login}></Route>
+<Route path='/Login' Component={LoginMain}></Route>
 <Route path='/HomeMain' Component={HomeMain}></Route>
 <Route path='/changePassword' Component={InnerChangePasswordMain}></Route>
 <Route path='/employee/:id' Component={EmployeSingleMain}></Route>
