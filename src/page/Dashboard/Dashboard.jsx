@@ -16,16 +16,16 @@ FalseDisplay();
 
   },[])
   return (
-    <div className="h-screen flex flex-col   w-screen">
+    <div className=" flex h-screen  flex-col   w-screen">
       <DashbordHeader />
 
       {/* Main content layout */}
-      <div className="grid grid-cols-[200px_1fr] w-[100%]   max-sm:grid-cols-1">
+      <div className="grid grid-cols-[200px_1fr] overflow-hidden w-[100%]  h-screen   max-sm:grid-cols-1">
         <SideMenu />
         <DashbordMain />
       </div>
 
-      <Footer />
+  
     </div>
   );
 };

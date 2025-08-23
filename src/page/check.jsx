@@ -1,22 +1,29 @@
-import { useState } from "react";
+import React from "react";
 
-const  Check= () => {
+const App = () => {
+  const profile = {
+    name: "John Doe",
+    email: "john@example.com",
+    age: 28,
+  };
 
-
-    return ( 
-    
-
-  <div className="px-5 py-5 content-box border">
-    
-<h1 clas>selam new</h1>
-</div>
-  
-
-  );
-
-
-
+  const handleDownload = () => {
+    const url="https://zkjgdrtmexmdmqvstwuz.supabase.co/storage/v1/object/public/my-file/file/1751638818700_freepik__the-style-is-candid-image-photography-with-natural__42247.jpeg ";
+    const a = document.createElement("a");
+    a.href =url
+    a.download = "profileimage"; // file name
+    a.click();
    
-}
- 
-export default Check;
+  };
+
+  return (
+    <button
+      onClick={handleDownload}
+      className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+    >
+      Download Profile
+    </button>
+  );
+};
+
+export default App;

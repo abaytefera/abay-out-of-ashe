@@ -5,19 +5,24 @@ import {
   faList,
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../../componet/footer';
 import { ControlLogic } from '../../ControlLofic/Controllogic';
 import { userControl } from '../../context/Controluser';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../Config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-
+import gsap from 'gsap';
+import TextPlugin from 'gsap/TextPlugin';
+gsap.registerPlugin(TextPlugin);
 const DashbordMain = () => {
   const { UserInformation, ChangeUserInformation } = userControl();
   const { isDarkmode } = ControlLogic();
   const navigate = useNavigate();
   const [EmployeList, setEmployeList] = useState([]);
+    const headingRef = useRef(null);
+    const cursorRef=useRef(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -53,6 +58,35 @@ const DashbordMain = () => {
     return () => unsubscribe();
   }, []);
 
+
+  useEffect(()=>{
+gsap.to(headingRef.current,{
+text:`Welcome back,${UserInformation?.firstname ? UserInformation?.firstname:""} ${UserInformation?.lastname ? UserInformation?.lastname:""}`,
+duration:3,
+ease:'none',
+onComplete:()=>{
+
+gsap.to(cursorRef.current,{
+opacity:0,
+yoyo: true,
+ duration: 0.6,
+ease: "power1.inOut",
+
+
+
+})
+
+}
+
+
+})
+
+
+
+
+
+  },[UserInformation])
+
   const cardData = [
     { label: 'Total Tasks', icon: faList, color: 'bg-pink-400', count: 240 },
     { label: 'Completed Tasks', icon: faCheckCircle, color: 'bg-green-400', count: 112 },
@@ -61,16 +95,18 @@ const DashbordMain = () => {
   ];
 
   return (
-    <div className={`px-10 h-screen space-y-40 overflow-auto pb-40 ${isDarkmode ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
+    <div className={` h-screen space-y-100  pt-10 overflow-y-auto pb-15  ${isDarkmode ? 'bg-gray-800 text-white' : 'bg-gray-100'}`}>
       {/* Welcome Header */}
-      <div className="mb-6">
-        <h1 className="text-start capitalize font-bold text-2xl sm:text-3xl text-gray-400">
-          Welcome back, {UserInformation?.firstname} {UserInformation?.lastname}
+      <div className="mb-6 flex">
+        <h1 ref={headingRef} className="text-4xl capitalize ml-10 font-bold bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+         
+       
         </h1>
+         <span className="text-4xl capitalize  font-bold bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 bg-clip-text text-transparent" ref={cursorRef}>|</span>
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-10 gap-4 mx-3 mb-8">
         {cardData.map((item, index) => (
           <div key={index} className={`flex flex-col items-center justify-center gap-2 ${isDarkmode ? 'bg-gray-700' : 'bg-white'} p-4 rounded shadow`}>
             <h2 className="font-semibold text-center">{item.label}</h2>
@@ -85,13 +121,36 @@ const DashbordMain = () => {
       </div>
 
       {/* Main Grid: Employees & Upcoming Tasks */}
-      <div className="flex flex-col lg:flex-row gap-6 min-h-0">
+      <div className="flex   justify-end   w-[100%]  lg:flex-row mt-20">
         {/* Employee List */}
-        <div className="flex-1 order-2 lg:order-1 min-h-0">
+        
+        {/* Upcoming Tasks */}
+        <div className=" self-end mr-10 lg:order-2">
+          <h2 className={`${isDarkmode ? 'bg-gray-500' : 'bg-blue-200'} font-bold text-lg mb-3 px-3 shadow-xl  py-2 rounded`}>
+            Upcoming Tasks
+          </h2>
+          <div className="flex flex-col space-x-5 gap-4">
+            {['2 days left', '7 days left'].map((day, index) => (
+              <div
+                key={index}
+                className={`flex items-center space-x-5 justify-between p-3 cursor-pointer rounded ${isDarkmode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition`}
+              >
+                <p className="font-semibold">Register 10 students</p>
+                <span className={`px-2 py-1 text-xs font-bold text-white rounded ${index === 0 ? 'bg-red-800' : 'bg-red-400'}`}>
+                  {day}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+      </div>
+      <div className='flex justify-start -mt-140 max-md:-mt-70 w-full items-center'>
+      <div className=" order-2 lg:order-1  ml-10 min-h-0">
           <h2 className={`${isDarkmode ? 'bg-gray-700' : 'bg-teal-100'} font-bold text-lg mb-3 px-3 py-2 rounded`}>
             Employees
           </h2>
-          <div className="flex flex-col max-h-[300px] overflow-auto gap-3 pr-2 border border-gray-300 rounded">
+          <div className="flex flex-col px-2 py-1 overflow-auto gap-3 pr-2 shadow-xl rounded">
             {EmployeList.map((emp, index) => (
              < Link to={`/employee/${emp.id}`} key={index}><div
                 
@@ -112,27 +171,9 @@ const DashbordMain = () => {
             ))}
           </div>
         </div>
-
-        {/* Upcoming Tasks */}
-        <div className="flex-1 order-1 lg:order-2">
-          <h2 className={`${isDarkmode ? 'bg-gray-500' : 'bg-blue-200'} font-bold text-lg mb-3 px-3 py-2 rounded`}>
-            Upcoming Tasks
-          </h2>
-          <div className="flex flex-col gap-4">
-            {['2 days left', '7 days left'].map((day, index) => (
-              <div
-                key={index}
-                className={`flex items-center justify-between p-3 cursor-pointer rounded ${isDarkmode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-100 hover:bg-gray-200'} transition`}
-              >
-                <p className="font-semibold">Register 10 students</p>
-                <span className={`px-2 py-1 text-xs font-bold text-white rounded ${index === 0 ? 'bg-red-800' : 'bg-red-400'}`}>
-                  {day}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
-      </div>
+
+          <Footer />
     </div>
   );
 };

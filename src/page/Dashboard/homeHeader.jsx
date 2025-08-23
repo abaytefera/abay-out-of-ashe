@@ -115,7 +115,7 @@ useEffect(() => {
 
 
   return (
-    <header className={` sticky top-0 z-50    w-full h-[60px] flex items-center justify-between px-10 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
+    <header className={` sticky top-0 z-500 absolute   w-full h-[60px] flex items-center justify-between px-10 shadow-md z-50 ${isDarkmode ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
       {/* Left: Logo & Menu */}
       <div className="flex items-center gap-4">
         <button className="sm:hidden text-xl" onClick={ControlDisplay}>
@@ -139,21 +139,22 @@ useEffect(() => {
 
      {SearchResult.length > 0 && (
   <div
-    className={`absolute top-12 w-full max-w-md sm:max-w-xl md:max-w-2xl max-h-[300px] overflow-y-auto rounded-lg shadow-xl z-50 ${
+    className={`absolute top-12 max-md:left-0 w-[300px]  md:w-[400px]   justify-center  max-h-[300px] overflow-y-auto rounded-lg shadow-2xl z-50 ${
       isDarkmode
         ? "bg-gray-800 border border-white text-white"
         : "bg-white text-black"
     }`}
   >
+  
     {SearchResult.map((data, index) => (
       <Link to={`/child/${data.id}`} key={data.id}>
         <div
-          className={`flex justify-between items-center gap-4 px-4 py-3 cursor-pointer transition duration-300 ${
+          className={`flex justify-between  items-center gap-4 px-4 py-3 cursor-pointer transition duration-300 ${
             isDarkmode ? "hover:bg-black" : "hover:bg-gray-200"
           }`}
         >
           {/* Profile + Name + Age */}
-          <div className="flex items-center gap-3">
+          <div className="flex  items-center gap-3">
             <img
               src={data?.urlChildFiles?.[0]}
               alt="child"

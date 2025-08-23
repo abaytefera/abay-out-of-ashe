@@ -1,24 +1,56 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-
+import gsap from "gsap";
 import Log from "../../componet/log";
 import Footer from "../../componet/footer";
 import { auth } from "../../Config/firebase";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { userControl } from "../../context/Controluser";
 import { useForm } from "react-hook-form";
-
+import { useLoginControl } from "../../context/contolloginanimation";
 function Login() {
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { ChangeUserInformation } = userControl();
+  const {Loginpage,controlLoginPage}=useLoginControl()
+  useEffect(()=>{
+controlLoginPage(true);
+
+  },[])
 
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
+
+
+const buttonLoginRef=useRef(null)
+useEffect(()=>{
+
+gsap.fromTo(buttonLoginRef.current,{
+  scale:0.5,
+    backgroundColor:"rgb(153, 88, 172)",
+
+},{
+  scale:1,
+  duration:1,
+backgroundColor:"rgb(165, 20, 210)",
+  repeat:-1,
+  yoyo:true,
+  ease:'elastic.inOut'
+
+
+
+})
+
+
+
+
+},[])
+
+
 
   const handleLogin = async (form) => {
     try {
@@ -116,7 +148,7 @@ function Login() {
           </div>
 
           {/* Submit */}
-          <button
+          <button 
             type="submit"
             className="w-full bg-abu hover:bg-bo transition-all duration-300 text-white font-semibold py-2 rounded"
           >

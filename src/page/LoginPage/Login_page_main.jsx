@@ -4,7 +4,7 @@ import Login from "./login_page";
 
 const LoginMain = () => {
   return (
-    <div className="flex h-full w-full overflow-auto flex-col "> 
+    <div className="flex h-full w-full  flex-col "> 
       <Log />
       <Login />
   

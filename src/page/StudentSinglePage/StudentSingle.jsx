@@ -5,6 +5,7 @@ import {
   faCancel,
   faCircleArrowLeft,
   faCircleArrowRight,
+  faDownload,
   faIcons,
   faSearch,
   faTimes,
@@ -47,32 +48,48 @@ const Textarea = ({ label, ...props }) => (
   </div>
 );
 
-const ImageSlider = ({images, currentIndex, onPrev, onNext, showFull, toggleShow }) => {
+const ImageSlider = ({images, currentIndex, onPrev, onNext, showFull, handleDownload,toggleShow }) => {
 
 if(!images || images.length===0) return null
 
   
- return (<div className={`relative flex items-center justify-between ${showFull ? "absolute inset-0 bg-black/60 p-8 z-50" : "gap-2"}`}>
+ return (<div className={`relative md:py-2  px-3 md:px-2  flex  items-center  ${showFull ? "absolute inset-0 bg-black/60 z-50" : ""}`}>
     <FontAwesomeIcon
       icon={faCircleArrowLeft}
-      className={`text-3xl ${currentIndex === 0 ? "text-gray-400 cursor-not-allowed" : "cursor-pointer text-white"}`}
+      className={`text-3xl  ${showFull ? "max-md:-mr-8":""} ${currentIndex === 0 ? "text-gray-400 cursor-not-allowed" : "cursor-pointer text-black"}`}
       onClick={onPrev}
     />
+    <div className="w-full flex gap-2 cursor-pointer">
+          <span className={`bg-white flex ${showFull ? "px-2 py-2":""}  rounded-md self-end`}>
+      <FontAwesomeIcon  className={`md:text-3xl  text-2xl ${showFull ? "text-sky-700 text-shadow-2xs text-shadow-sky-300":"text-sky-700 "} self-end`} icon={faUpload}>
+
+      </FontAwesomeIcon>
+      </span>
     <img
       src={images?.[currentIndex]}
       alt="preview"
       onClick={toggleShow}
-      className={`object-contain rounded-xl ${showFull ? "w-3/4 h-auto" : "w-24 h-24 md:w-40 md:h-40"}`}
+      className={`object-contain rounded-xl ${showFull ? "w-3/4 h-auto z-500 " : "w-24 h-24 md:w-40 md:h-40"}`}
     />
+    <span onClick={()=>{
+      handleDownload(images?.[currentIndex]);
+    }} className={`bg-white  ${showFull ? "px-2 py-2":""}  flex rounded-md self-end`}>
+
+    <FontAwesomeIcon  className={`md:text-3xl text-green-700   text-2xl  font-bold self-end`} icon={faDownload}>
+
+    </FontAwesomeIcon>
+    </span>
+    </div>
+ 
     <FontAwesomeIcon
       icon={faCircleArrowRight}
-      className={`text-3xl ${currentIndex >= images.length - 1 ? "text-gray-400" : "cursor-pointer text-white"}`}
+      className={`text-3xl ${showFull ?"md:-ml-24" :""} ${currentIndex >= images.length - 1 ? "text-gray-400 cursor-not-allowed" : "cursor-pointer text-black"}`}
       onClick={onNext}
     />
     {showFull && (
       <FontAwesomeIcon
         icon={faTimes}
-        className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-red-500"
+        className="absolute  top-4 right-4 text-white text-2xl cursor-pointer hover:text-red-500"
         onClick={toggleShow}
       />
     )}
@@ -104,7 +121,29 @@ const ParentTextRef=useRef(null);
 
 
   const childInputRef = useRef(null);
+const [profileUploadFile,setProfileUploadFile]=useState([]);
 
+  const handleDownload=async(urlDownload)=>{
+    try{
+console.log("selam new")
+     const response=await fetch(urlDownload);
+const blob=await response.blob();
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download="downloadFiel";
+a.click();
+URL.revokeObjectURL(url);
+
+
+    }catch(error){
+      console.log(error.message);
+    }
+
+ 
+
+
+  }
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -289,7 +328,7 @@ Submitform.current.click();
 catch(error){
 console.log(error.message);
 
-
+setLoading(false)
 }
   
 
@@ -376,10 +415,11 @@ console.log('all')
             onNext={() =>
               setImageIndex((prev) => ({
                 ...prev,
-                child: Math.min((childInfo?.urlChildFiles?.length-1|| 1) - 1, prev.child + 1),
+                child: Math.min((childInfo?.urlChildFiles?.length|| 1) - 1, prev.child + 1),
               }))
             }
             showFull={showImage.child}
+            handleDownload={handleDownload}
             toggleShow={() => setShowImage((prev) => ({ ...prev, child: !prev.child }))}
           />
 
