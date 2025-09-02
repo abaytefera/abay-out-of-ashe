@@ -894,7 +894,7 @@ setFileUpload((pre)=>({...pre,normalFile:pre.normalFile.filter((item,index)=>ind
 
               {/* File preview modal */}
               {FileUpload?.tempFile.length > 0 && (
-                <div className="absolute text-white h-[max-content] flex-col z-50 bg-gray-800 w-50 max-w-ful rounded space-y-3 px-4 py-3 flex justify-center items-center inset-0">
+                <div className="absolute text-white h-[max-content] flex-col z-50 bg-gray-800 w-80 max-w-ful rounded space-y-3 px-10 py-3 flex justify-center items-center inset-0">
                   <div>
                     {FileUpload?.tempFile.map((file, indx) => (
                       <div key={indx}><div className="flex items-center gap-1 justify-center">{file?.name} 
@@ -938,7 +938,7 @@ setFileUpload((pre)=>({...pre,tempFile:pre.tempFile.filter((item,index)=>index!=
             </div>
 
             {/* Description Textarea */}
-            <div className="flex flex-col space-y-4">
+            <div className="self-center flex max-md:w-full flex-col space-y-4">
               <label
                 htmlFor="description"
                 className="text-gray-700 text-sm font-bold"
@@ -952,7 +952,7 @@ setFileUpload((pre)=>({...pre,tempFile:pre.tempFile.filter((item,index)=>index!=
                   e.target.style.height = "auto";
                   e.target.style.height = `${e.target.scrollHeight}px`;
                 }}
-                className="border h-30 px-3 py-2 w-125  max-full resize-none overflow-hidden rounded-md "
+                className="border  max-md:w-full h-30 px-3 py-2 w-125  max-full resize-none overflow-hidden rounded-md "
               ></textarea>
             </div>
 

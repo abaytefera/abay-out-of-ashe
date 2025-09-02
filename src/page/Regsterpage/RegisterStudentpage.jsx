@@ -155,7 +155,7 @@ setIsloading(true)
 
       <form
         onSubmit={handleSubmit(handlesubmit)}
-        className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-white"} flex flex-col gap-5 rounded-lg pb-5`}
+        className={`${isDarkmode ? "bg-gray-800 text-white" : "bg-white"} flex px-10 flex-col gap-5 rounded-lg pb-5`}
       >
         {/* Step indicator */}
         <div className="flex justify-around items-center py-5">

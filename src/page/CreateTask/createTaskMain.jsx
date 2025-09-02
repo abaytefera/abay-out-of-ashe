@@ -16,7 +16,7 @@ const  CreateTaskMain= () => {
 
        <div className="h-screen flex flex-col  w-screen">
  <DashbordHeader></DashbordHeader>
-  <div className="grid grid-cols-[200px_1fr] w-[100%]     max-sm:grid-cols-1">
+  <div className="grid grid-cols-[200px_1fr] w-[100%]  overflow-hidden   max-sm:grid-cols-1">
  <SideMenu></SideMenu>
 <CreateTaskPage></CreateTaskPage>
   </div>

@@ -258,14 +258,14 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
     <div
       className={`${
         isDarkmode ? "bg-gray-800 text-white" : "bg-white"
-      } flex w-full  h-screen overflow-auto  ${!isWide ?"pb-40":"pb-30"}`}
+      } flex w-full pt-5  h-screen overflow-auto  ${!isWide ?"pb-40":"pb-30"}`}
     >
       {/* Sidebar - Chat List */}
       <div
         className={`${
           isWide || !chat ? "flex" : "hidden"
         } flex-col w-full  ${!isWide ? "":"max-w-[300px]"}  border-r shadow-sm ${
-          isDarkmode ? "bg-gray-900 text-white" : "bg-white"
+          isDarkmode ? "bg-gray-800 text-white" : "bg-white"
         } min-h-0 overflow-hidden`}
       >
         <h2 className="text-2xl font-bold px-4 pt-4 pb-2">Messages</h2>
@@ -287,7 +287,7 @@ if(isloading) return <div className="flex flex-col  h-screen items-center justif
           {ChatList.map((item, index) => (
             <div
               key={index}
-              className="flex justify-between items-center p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+              className={`flex justify-between items-center p-2 rounded  ${isDarkmode ? "hover:bg-gray-700":"hover:bg-gray-200"} cursor-pointer`}
               onClick={()=>{
                 handleSingleMessage(item.chatInfo.id,item.userInfo)
                 setChat(true);
